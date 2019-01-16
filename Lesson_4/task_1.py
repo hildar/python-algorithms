@@ -1,3 +1,8 @@
+# 1. Проанализировать скорость и сложность одного любого алгоритма, разработанных в рамках
+# домашнего задания первых трех уроков.
+# Примечание: попробуйте написать несколько реализаций алгоритма и сравнить их.
+
+# Задача из предыдущего ДЗ.
 # Определить, какое число в массиве встречается чаще всего.
 
 import random
@@ -21,7 +26,7 @@ def version_1(MAX_ITEM):
     return max_num + MIN_ITEM
 
 
-# python -m timeit -n 100 -s "import tmp" "tmp.version_1(1000)"
+# python -m timeit -n 100 -s "import task_1" "task_1.version_1(1000)"
 #
 # 100 loops, best of 5: 122 usec per loop - 1 000
 # 100 loops, best of 5: 209 usec per loop - 2 000
@@ -34,25 +39,25 @@ def version_1(MAX_ITEM):
 
 # cProfile.run('version_1(1000)')
 #
-# 1    0.000    0.000    0.000    0.000 tmp.py:8(version_1) -               1 000
-# 1    0.001    0.001    0.001    0.001 tmp.py:8(version_1) -               10 000
+# 1    0.000    0.000    0.000    0.000 task_1.py:8(version_1) -               1 000
+# 1    0.001    0.001    0.001    0.001 task_1.py:8(version_1) -               10 000
 #
-# 1    0.004    0.004    0.004    0.004 tmp.py:12(<listcomp>)
-# 1    0.006    0.006    0.010    0.010 tmp.py:8(version_1) -               100 000
+# 1    0.004    0.004    0.004    0.004 task_1.py:12(<listcomp>)
+# 1    0.006    0.006    0.010    0.010 task_1.py:8(version_1) -               100 000
 #
-# 1    0.055    0.055    0.055    0.055 tmp.py:12(<listcomp>)
-# 1    0.055    0.055    0.110    0.110 tmp.py:8(version_1) -               1 000 000
+# 1    0.055    0.055    0.055    0.055 task_1.py:12(<listcomp>)
+# 1    0.055    0.055    0.110    0.110 task_1.py:8(version_1) -               1 000 000
 #
-# 1    0.113    0.113    0.113    0.113 tmp.py:12(<listcomp>)
-# 1    0.112    0.112    0.226    0.226 tmp.py:8(version_1) -               2 000 000
+# 1    0.113    0.113    0.113    0.113 task_1.py:12(<listcomp>)
+# 1    0.112    0.112    0.226    0.226 task_1.py:8(version_1) -               2 000 000
 #
-# 1    0.562    0.562    0.562    0.562 tmp.py:13(<listcomp>)
-# 1    0.557    0.557    1.119    1.119 tmp.py:7(version_1) -               10 000 000
+# 1    0.562    0.562    0.562    0.562 task_1.py:13(<listcomp>)
+# 1    0.557    0.557    1.119    1.119 task_1.py:7(version_1) -               10 000 000
 #
 # Запуск с небольшим изменением SIZE для сравнения с вариантом № 4
 # cProfile.run('version_1(30)')
 # SIZE = 1000000
-# 1    0.291    0.291    2.229    2.229 tmp.py:11(<listcomp>)
+# 1    0.291    0.291    2.229    2.229 task_1.py:11(<listcomp>)
 
 #
 #
@@ -86,7 +91,7 @@ def version_2(MAX_ITEM):
         return False
 
 
-# python -m timeit -n 100 -s "import tmp" "tmp.version_2(1000)"
+# python -m timeit -n 100 -s "import task_1" "task_1.version_2(1000)"
 #
 # 100 loops, best of 5: 57.3 usec per loop - 1 000
 # 100 loops, best of 5: 57.7 usec per loop - 2 000
@@ -96,7 +101,7 @@ def version_2(MAX_ITEM):
 
 
 # cProfile.run('version_2(100000000000000000000000000000000000)')
-# 1    0.000    0.000    0.000    0.000 tmp.py:69(version_2) - 100000000000000000000000000000000000
+# 1    0.000    0.000    0.000    0.000 task_1.py:69(version_2) - 100000000000000000000000000000000000
 
 #
 #
@@ -127,7 +132,7 @@ def version_3(SIZE):
         return False
 
 
-# python -m timeit -n 100 -s "import tmp" "tmp.version_3(10)"
+# python -m timeit -n 100 -s "import task_1" "task_1.version_3(10)"
 #
 # 100 loops, best of 5: 25 usec per loop - 10
 # 100 loops, best of 5: 75.5 usec per loop - 25
@@ -143,12 +148,12 @@ def version_3(SIZE):
 # cProfile.run('version_3(1000)')
 #
 # 1000    0.000    0.000    0.002    0.000 random.py:218(randint)
-# 1    0.050    0.050    0.052    0.052 tmp.py:110(version_3) -                 1 000
-# 1    0.199    0.199    0.203    0.203 tmp.py:110(version_3) -                 2 000
-# 1    0.443    0.443    0.450    0.450 tmp.py:110(version_3) -                 3 000
-# 1    1.247    1.247    1.258    1.258 tmp.py:110(version_3) -                 5 000
-# 1    1.799    1.799    1.813    1.813 tmp.py:110(version_3) -                 6 000
-# 1    4.978    4.978    5.001    5.001 tmp.py:110(version_3) -                 10 000
+# 1    0.050    0.050    0.052    0.052 task_1.py:110(version_3) -                 1 000
+# 1    0.199    0.199    0.203    0.203 task_1.py:110(version_3) -                 2 000
+# 1    0.443    0.443    0.450    0.450 task_1.py:110(version_3) -                 3 000
+# 1    1.247    1.247    1.258    1.258 task_1.py:110(version_3) -                 5 000
+# 1    1.799    1.799    1.813    1.813 task_1.py:110(version_3) -                 6 000
+# 1    4.978    4.978    5.001    5.001 task_1.py:110(version_3) -                 10 000
 
 
 #
@@ -184,7 +189,7 @@ def version_4(SIZE):
 
 aaa = 0  # Это чтобы убрать бисючие полоски :-( Вот попробуйте закоментировать строку
 
-# python -m timeit -n 100 -s "import tmp" "tmp.version_4(100)"
+# python -m timeit -n 100 -s "import task_1" "task_1.version_4(100)"
 #
 # 100 loops, best of 5: 173 usec per loop - 100
 # 100 loops, best of 5: 350 usec per loop - 200
@@ -199,19 +204,19 @@ aaa = 0  # Это чтобы убрать бисючие полоски :-( Во
 # cProfile.run('version_4(2000000)')
 #
 # 10000    0.003    0.000    0.020    0.000 random.py:218(randint)
-# 1    0.002    0.002    0.024    0.024 tmp.py:163(version_4) -             10 000
-# 1    0.003    0.003    0.022    0.022 tmp.py:166(<listcomp>)
+# 1    0.002    0.002    0.024    0.024 task_1.py:163(version_4) -             10 000
+# 1    0.003    0.003    0.022    0.022 task_1.py:166(<listcomp>)
 #
-# 1    0.021    0.021    0.244    0.244 tmp.py:163(version_4)
-# 1    0.027    0.027    0.222    0.222 tmp.py:166(<listcomp>) -            100 000
+# 1    0.021    0.021    0.244    0.244 task_1.py:163(version_4)
+# 1    0.027    0.027    0.222    0.222 task_1.py:166(<listcomp>) -            100 000
 #
-# 1    0.044    0.044    0.498    0.498 tmp.py:163(version_4)
-# 1    0.058    0.058    0.454    0.454 tmp.py:166(<listcomp>) -            200 000
+# 1    0.044    0.044    0.498    0.498 task_1.py:163(version_4)
+# 1    0.058    0.058    0.454    0.454 task_1.py:166(<listcomp>) -            200 000
 #
-# 1    0.220    0.220    2.484    2.484 tmp.py:163(version_4)
-# 1    0.294    0.294    2.265    2.265 tmp.py:166(<listcomp>) -            1 000 000
+# 1    0.220    0.220    2.484    2.484 task_1.py:163(version_4)
+# 1    0.294    0.294    2.265    2.265 task_1.py:166(<listcomp>) -            1 000 000
 #
-# 1    0.441    0.441    5.000    5.000 tmp.py:163(version_4) -             2 000 000
+# 1    0.441    0.441    5.000    5.000 task_1.py:163(version_4) -             2 000 000
 #
 
 
