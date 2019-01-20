@@ -25,8 +25,10 @@ def notSieve(n):
             lst.append(i)
         if len(lst) >= n + 1:  # Выход, если превышен i-й по счету элемент
             break
-    return lst[n]
+    return lst[n-1]
 
+
+# print(notSieve(1))
 
 # python -m timeit -n 100 -s "import task_2" "task_2.notSieve(100)"
 #
@@ -68,11 +70,17 @@ def notSieve(n):
 
 
 def isSieve(n):
+    if n == 0:
+        return "Нет такого простого числа"
+    if n == 1:
+        return 2
+    elif n == 2:
+        return 3
     m = n * 100  # Увеличиваем пространство для маневра. Если честно,
     # то я не успел найти способа лучше (в очереди ДЗ по параллельному курсу)
     sieve = [i for i in range(n)]
+    sieve[0] = 0
     sieve[1] = 0
-
     for i in range(2, m):
         if sieve[i] != 0:
             j = i + i
@@ -82,8 +90,10 @@ def isSieve(n):
                 sieve[j] = 0
                 j += i
     result = [i for i in sieve if i != 0]
-    return result[n]
+    return result[n-1]
 
+
+# print(isSieve(5))
 
 # python -m timeit -n 100 -s "import task_2" "task_2.isSieve(100)"
 #
