@@ -24,43 +24,76 @@ def func_cnt(num):
             cnt_odd += 1
         num //= 10
 
-    return cnt_odd, cnt_parity
+    return cnt_odd, cnt_parity, locals()
 
 
 print('Задача № 1.')
 num_input = int(input('Введите любое натуральное число: '))
 
-num_odd, num_parity = func_cnt(num_input)
+num_odd, num_parity, loc1 = func_cnt(num_input)
 
 print(f'Число {num_input} имеет\n'
       f'четных цифр: {num_parity}\n'
       f'нечетных цифр: {num_odd}')
 
+print(f'loc1 = {loc1}')
+
 
 
 # Начал реализацию ДЗ
-a = [str(i) for i in range(4)]
 
 
-def show_size(x, sum):
-    if not hasattr(x, '__iter__'):
-        return sys.getsizeof(x)
-    elif isinstance(x, str):
-        return sys.getsizeof(x)
+def show_sizeof(x, summ=0):
+    # Если является строкой, то сразу возвращаем сумму + размер
+    if isinstance(x, str):
+        return summ + sys.getsizeof(x)
+
+    # Проверяем что объект итерируется (списки, кортежи, множества и т.д.)
+    elif hasattr(x, '__iter__'):
+        summ += sys.getsizeof(x)
+        # проверка на словарь dict{}
+        if hasattr(x, 'items'):
+            for item in x.items():
+                if hasattr(item, '__iter__'):
+                    # повторный вызов функции если объект итерируемый
+                    summ = show_sizeof(item, summ)
+                else:
+                    summ += sys.getsizeof(item)
+        else:
+            for item in x:
+                if hasattr(item, '__iter__'):
+                    # повторный вызов функции если объект итерируемый
+                    summ = show_sizeof(item, summ)
+                else:
+                    summ += sys.getsizeof(item)
+        return summ
+    # иначе int, float etc.
     else:
-        if not isinstance(x, str):
-            for item in x:
-                return sum + show_size(item, sum)
+        return sys.getsizeof(x)
 
 
-def show_size_print(x):
-    print(sys.getsizeof(x), type(x))
-    if hasattr(x, '__iter__'):
-        if not isinstance(x, str):
-            for item in x:
-                show_size_print(item)
+# # тесты
+# d = [1, 2, '3', ['01', 1, 2.22, [1, 2, '23', 3, '34', '45']]]
+# print(f'd = {d}')
+# print('show_sizeof(d) = 750 == ', show_sizeof(d))
+#
+# e = [str(i) for i in range(3)]
+# f = set([str(i) for i in range(2)])
+# e.append(f)
+# print('e = ', e)
+# print('show_sizeof(e) = 570 == ', show_sizeof(e))
+#
+# g = {str(i): i for i in range(3)}
+# print('g = ', g)
+# print('show_sizeof(g) = 662 == ', show_sizeof(g))
+#
+# print(show_sizeof(3))
+# print(show_sizeof('3'))
+# print(show_sizeof(3.0))
+# print(show_sizeof(None), sys.getsizeof(None))
+# print(show_sizeof(True), sys.getsizeof(True))
+# print('inf', show_sizeof(float('inf')), sys.getsizeof(float('inf')))
 
-
-sum=0
-print(show_size(a, sum))
-print(show_size_print(a))
+glob = globals()
+print(glob)
+# print('show_sizeof(loc) == ', show_sizeof(loc))
